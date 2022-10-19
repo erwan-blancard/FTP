@@ -14,7 +14,9 @@ if [ ! $? == 0 ]; then
 	exit 1
 fi
 
-sudo openssl req -x509 -newkey rsa:2048 -keyout /etc/ssl/private/proftpd.key -out /etc/ssl/certs/proftpd.crt -nodes -days 3650
+#generates a certificate without user input
+echo "Generating certificate..."
+sudo openssl req -x509 -newkey rsa:2048 -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.example.com" -keyout /etc/ssl/private/proftpd.key -out /etc/ssl/certs/proftpd.crt -nodes -days 3650
 
 sudo cp proftpd_tls.conf /etc/proftpd/conf.d
 if [ ! $? == 0 ]; then
@@ -22,6 +24,7 @@ if [ ! $? == 0 ]; then
 	exit 1
 fi
 
+echo "Restarting service..."
 sudo systemctl restart proftpd
 
 echo "Installation successful !"
