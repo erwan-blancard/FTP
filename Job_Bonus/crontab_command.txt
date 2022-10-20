@@ -1,0 +1,2 @@
+#needs to be placed in the root crontab for root privileges
+@weekly /home/admin-ftp/backup_ftp.sh
