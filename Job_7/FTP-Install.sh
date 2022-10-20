@@ -2,6 +2,11 @@
 apt-get install -y sudo
 
 sudo apt-get -y update
+
+sudo systemctl unmask proftpd
+sudo mkdir /etc/proftpd
+sudo mkdir /etc/proftpd/conf.d
+
 sudo apt-get install -y proftpd
 if [ ! $? == 0 ]; then
 	echo "Cannot install package \"proftpd\". Exiting..."
@@ -29,4 +34,4 @@ fi
 #echo "Restarting service..."
 #sudo systemctl restart proftpd
 
-echo "Installation successful !"
+echo -e "\nInstallation successful !"
